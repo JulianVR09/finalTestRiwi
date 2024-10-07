@@ -24,8 +24,8 @@ async function bootstrap() {
   app.useGlobalInterceptors(new ResponseInterceptor)
 
   const config = new DocumentBuilder()
-    .setTitle('SimulacroMySQL')
-    .setDescription('')
+    .setTitle('final test')
+    .setDescription('Documentation for the final test')
     .setVersion('1.0')
     .build();
 
