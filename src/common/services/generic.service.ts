@@ -33,7 +33,7 @@ export class GenericService <T extends ObjectLiteral> {
     }
 
     async delete(id: string): Promise<T> {
-        const deleted = await this.repository.delete(id);
+        const deleted = await this.repository.softDelete(id);
 
         if(deleted.affected === 0) throw new NotFoundException(`Entity with id ${id} not found`);
 
