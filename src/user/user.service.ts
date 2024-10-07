@@ -1,26 +1,48 @@
 import { Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { GenericService } from 'src/common/services/generic.service';
+import { Repository } from 'typeorm';
+import { User } from './entities/user.entity';
+import { PasswordService } from 'src/common/services/password.service';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
-export class UserService {
-  create(createUserDto: CreateUserDto) {
-    return 'This action adds a new user';
+export class UserService extends GenericService<User> {
+  constructor(
+    @InjectRepository(User)
+    private readonly userRepository: Repository<User>,
+    private readonly passwordService: PasswordService,
+  ) {
+    super(userRepository)
   }
 
-  findAll() {
-    return `This action returns all user`;
+  async createUser(createUserDto: CreateUserDto): Promise<User> {
+    const hashPassword = await this.passwordService.hashPassword(createUserDto.password);
+    const newUser = { ...createUserDto, password: hashPassword};
+    return this.userRepository.save(newUser);
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+  async findAllUsers(): Promise<User[]> {
+    return this.userRepository.find();
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+  async findUserById(id: string): Promise<User> {
+    return super.findById(id)
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} user`;
+  async updateUser(id: string, updateUserDto: UpdateUserDto): Promise<User> {
+    return super.update(id, updateUserDto)
+  }
+
+  async deleteUser(id: string): Promise<User> {
+    return super.delete(id)
+  }
+
+  async findUserWithPassword(email: string): Promise<User> {
+    return this.userRepository.findOne({
+      where: { email },
+      select: ['id', 'email', 'password', 'role']
+    });
   }
 }
