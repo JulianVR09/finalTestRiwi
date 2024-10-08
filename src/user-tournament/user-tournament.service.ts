@@ -4,8 +4,8 @@ import { GenericService } from '../common/services/generic.service';
 import { UserTournament } from './entities/user-tournament.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { UserService } from 'src/user/user.service';
-import { TournamentService } from 'src/tournament/tournament.service';
+import { UserService } from '../user/user.service';
+import { TournamentService } from '../tournament/tournament.service';
 import { UpdateUserTournamentDto } from './dto/update-user-tournament.dto';
 
 @Injectable()
