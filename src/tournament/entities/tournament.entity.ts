@@ -1,4 +1,4 @@
-import { UserTournament } from "src/user-tournament/entities/user-tournament.entity";
+import { UserTournament } from "../../user-tournament/entities/user-tournament.entity";
 import { BaseEntity, Column, CreateDateColumn, Entity, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity()

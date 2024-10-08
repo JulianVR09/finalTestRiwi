@@ -1,5 +1,5 @@
-import { Role } from "src/common/enums/role.enum";
-import { UserTournament } from "src/user-tournament/entities/user-tournament.entity";
+import { Role } from "../../common/enums/role.enum";
+import { UserTournament } from "../../user-tournament/entities/user-tournament.entity";
 import { BaseEntity, Column, CreateDateColumn, Entity, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity()

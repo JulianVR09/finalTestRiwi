@@ -3,7 +3,7 @@ import { TournamentService } from './tournament.service';
 import { TournamentController } from './tournament.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Tournament } from './entities/tournament.entity';
-import { AuthModule } from 'src/auth/auth.module';
+import { AuthModule } from '../auth/auth.module';
 
 @Module({
   imports: [
