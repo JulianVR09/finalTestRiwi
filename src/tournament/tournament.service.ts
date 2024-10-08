@@ -5,7 +5,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Tournament } from './entities/tournament.entity';
 import { Repository } from 'typeorm';
 import { GenericService } from 'src/common/services/generic.service';
-import { UserService } from 'src/user/user.service';
 
 @Injectable()
 export class TournamentService extends GenericService<Tournament> {

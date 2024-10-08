@@ -1,5 +1,6 @@
 import { Role } from "src/common/enums/role.enum";
-import { BaseEntity, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { UserTournament } from "src/user-tournament/entities/user-tournament.entity";
+import { BaseEntity, Column, CreateDateColumn, Entity, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity()
 export class User extends BaseEntity{
@@ -26,4 +27,7 @@ export class User extends BaseEntity{
 
     @UpdateDateColumn()
     updatedAt: Date;
+
+    @OneToOne(() => UserTournament, (userTournamet) => userTournamet.user)
+    userTournament: UserTournament[];
 }
