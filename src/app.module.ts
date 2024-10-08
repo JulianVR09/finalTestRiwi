@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
 import { TournamentModule } from './tournament/tournament.module';
+import { UserTournamentModule } from './user-tournament/user-tournament.module';
 
 @Module({
   imports: [
@@ -30,6 +31,8 @@ import { TournamentModule } from './tournament/tournament.module';
     AuthModule,
 
     TournamentModule,
+
+    UserTournamentModule,
 
   ],
   controllers: [],

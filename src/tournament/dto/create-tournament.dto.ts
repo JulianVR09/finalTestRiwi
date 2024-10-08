@@ -1,4 +1,4 @@
-import { IsDate, IsOptional, IsString } from "class-validator";
+import { IsNumber, IsOptional, IsString } from "class-validator";
 
 export class CreateTournamentDto {
     @IsString()
@@ -8,14 +8,9 @@ export class CreateTournamentDto {
     @IsOptional()
     description?: string;
 
-    @IsDate()
-    @IsOptional()
-    startDate?: Date;
-
-    @IsDate()
-    @IsOptional()
-    endDate?: Date;
-
     @IsString()
     prizePool: string;
+
+    @IsNumber()
+    maxParticipants: number;
 }

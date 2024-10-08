@@ -1,4 +1,5 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { UserTournament } from "src/user-tournament/entities/user-tournament.entity";
+import { BaseEntity, Column, CreateDateColumn, Entity, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity()
 export class Tournament extends BaseEntity {
@@ -11,12 +12,18 @@ export class Tournament extends BaseEntity {
     @Column({ nullable: true })
     description?: string;
 
-    @Column({ nullable: true })
-    startDate?: Date;
-
-    @Column({ nullable: true })
-    endDate?: Date;
+    @Column()
+    prizePool: string;
 
     @Column()
-    prizes: string;
+    maxParticipants: number;
+
+    @CreateDateColumn()
+    createdAt: Date;
+
+    @UpdateDateColumn()
+    updatedAt: Date;
+
+    @OneToOne(() => UserTournament, (userTournament) => userTournament.tournament)
+    userTournament: UserTournament[];
 }
