@@ -2,7 +2,7 @@ import { Controller, Post, Body, Get, } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { RegisterDto } from './dto/register.dto';
 import { LoginDto } from './dto/login.dto';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { Auth } from './decorators/auth.decorator';
 import { Role } from '../common/enums/role.enum';
 
@@ -22,6 +22,7 @@ export class AuthController {
   }
 
   @Auth(Role.ADMIN)
+  @ApiBearerAuth()
   @Get()
   findAllUsers() {
     return this.authService.findAllUsers();
